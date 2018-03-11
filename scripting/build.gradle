@@ -1,0 +1,22 @@
+task groovy() << {}
+
+class MyClass {
+    public void foo() {
+        System.out.println("Wooow, I'm java code!");
+    }
+}
+println "Hello World!"
+
+def a = 2
+def b = 4
+println "${a} + ${b} = ${a + b}"
+
+MyClass foo = new MyClass()
+foo.foo()
+
+def echo(e) {
+    println e
+}
+
+echo 10
+echo "Foo bar"
