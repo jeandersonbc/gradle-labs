@@ -1,4 +1,4 @@
-task groovy() << {}
+task groovy { doLast{} }
 
 class MyClass {
     public void foo() {
