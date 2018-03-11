@@ -1,19 +1,22 @@
 // Groovy ref: http://groovy-lang.org/groovy-dev-kit.html
-task groovy() << {}
+task groovy {
+    doLast {
+        def foo = "bar"
+        println "$foo + foo = ${foo + "foo"}"
 
-def foo = "bar"
-println "$foo + foo = ${foo + "foo"}"
+        def numbers = [1, 2, 3, 4, 5]
 
-def numbers = [1, 2, 3, 4, 5]
+        // groovy-like loop
+        for (num in numbers) {
+            println "$num"
+        }
+        // using closures
+        numbers.each({ x -> println "$x" });
 
-// groovy-like loop
-for (num in numbers) {
-    println "$num"
+        def numbers2 = numbers.collect{ x -> x * x }
+        def numbers3 = numbers.collect{ it * it }
+        assert numbers2 == numbers3
+        println "$numbers2"
+    }
 }
-// using closures
-numbers.each({ x -> println "$x" });
 
-def numbers2 = numbers.collect{ x -> x * x }
-def numbers3 = numbers.collect{ it * it }
-assert numbers2 == numbers3
-println "$numbers2"
