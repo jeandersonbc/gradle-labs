@@ -1,0 +1,25 @@
+// Some Groovy idioms:
+
+task someTask {
+    description = "Foo description"
+    group = "Group Foo"
+    doLast {
+        println "Running the someTask"
+    }
+}
+
+task("anotherSyntax") {
+    description "Foo description"
+    group "Group Foo"
+    doLast {
+        println "Running the anotherTask"
+    }
+}
+
+task "finalTask" {
+    description("Foo description")
+    group("Group Bar")
+    doLast {
+        println "Running the finalTask"
+    }
+}
