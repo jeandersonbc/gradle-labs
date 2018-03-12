@@ -1,5 +1,35 @@
 // Some Groovy idioms:
 
+/*
+    A build file describes properties of a Project object.
+    A task is nothing but a Project property
+*/
+task("anotherSyntax") {
+
+    description "Foo description"
+    group "Group Foo"
+    doLast {
+        println "Running the anotherTask"
+    }
+}
+
+/*
+    Because of Groovy syntax, we can omit the parenthesis here
+*/
+task "finalTask" {
+
+    // This is a syntax sugar for a setter
+    description("Foo description")
+    group("Group Bar")
+    doLast {
+        println "Running the finalTask"
+    }
+}
+
+/*
+    Groovy interpreter performs a transformation on the identifier someTask so
+    we can omit the parenthesis in this case.
+*/
 task someTask {
     description = "Foo description"
     group = "Group Foo"
@@ -8,18 +38,3 @@ task someTask {
     }
 }
 
-task("anotherSyntax") {
-    description "Foo description"
-    group "Group Foo"
-    doLast {
-        println "Running the anotherTask"
-    }
-}
-
-task "finalTask" {
-    description("Foo description")
-    group("Group Bar")
-    doLast {
-        println "Running the finalTask"
-    }
-}
