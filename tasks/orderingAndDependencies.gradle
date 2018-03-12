@@ -1,0 +1,76 @@
+task putOnShoes {
+
+    // putOnSocks must run before running this task
+    dependsOn "putOnSocks"
+    doLast {
+        println "Putting on shoes"
+    }
+}
+
+task putOnSocks {
+    doLast {
+        println "Putting on socks"
+    }
+}
+
+/*
+
+On the following example, we want to ensure that the brushTeeth task is ALWAYS
+executed after eating breakfast. We achieve this with the "finilizedBy"
+constraint.
+
+*/
+task eatBreakfast {
+    finalizedBy "brushTeeth"
+    doLast {
+        println "Yummy! Breakfast time!"
+    }
+}
+
+task brushTeeth {
+    doLast {
+        println "Brushing teeth!"
+    }
+}
+
+/*
+
+Let's consider a situation where two tasks doesn't depend on each other.  There
+is no relationship between them (eg, generating javadoc and running tests) but
+we would like to impose an ordering. For instance, although those tasks are not
+related, we want to generate javadoc only if tests pass.  Therefore, we use the
+"mustRunAfter" constraint to establish this ordering preference.
+
+There is also "shouldRunAfter" but it differs from mustRunAfter... Refer to the
+docs for more information: 
+
+    https://docs.gradle.org/current/userguide/more_about_tasks.html
+
+*/
+task putFragance {
+    mustRunAfter "takeShower"
+    doLast {
+        println "Smelling good!"
+    }
+}
+
+task takeShower {
+    doLast {
+        println "Taking a long and warm shower...."
+    }
+}
+
+// We can define ordering here, as well!
+putOnShoes.mustRunAfter takeShower
+
+task getReady {
+    dependsOn = ["putOnShoes", "takeShower", "eatBreakfast"]
+}
+
+// We can do Pattern matching too:
+task gearUp {
+    dependsOn tasks.matching({ task -> task.name.startsWith("putOn") })
+    doLast {
+        println "All set!"
+    }
+}
