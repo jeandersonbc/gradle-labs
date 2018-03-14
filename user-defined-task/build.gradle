@@ -7,10 +7,40 @@ Further reading: https://docs.gradle.org/current/userguide/custom_tasks.html
 
 // Must inherit from DefaultTask
 class HelloTask extends DefaultTask {
+
+    def username
+
     @TaskAction
     def doAction() {
-        println "Hello, user!"
+        println "Hello, $username!"
     }
 }
 
-task someTask(type: HelloTask)
+task someTask(type: HelloTask) {
+    username = "jeandersonbc"
+}
+
+task other(type: HelloTask, dependsOn: someTask) {
+    username = 123 
+}
+
+// An auxiliary task that performs a system call
+class GitHelper extends DefaultTask {
+    def revision
+
+    @TaskAction
+    def whichVersion() {
+        revision = "git rev-parse HEAD".execute().text
+    }
+}
+
+task gitVersion(type: GitHelper) {
+    /*
+        doLast is required to ensure that the following
+        closure executes only after GitHelper sets the revision properly
+    */
+    doLast {
+        // revision is a property from GitHelper
+        println "I'm currently at $revision version"
+    }
+}
