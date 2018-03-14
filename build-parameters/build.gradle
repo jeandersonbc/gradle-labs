@@ -1,0 +1,6 @@
+task doSomething {
+    doLast {
+        // Some property is declared outside!
+        println someProperty
+    }
+}
