@@ -8,3 +8,4 @@ Useful links:
 - [Gradle DSL Reference](https://docs.gradle.org/current/dsl/)
 - [Learn Groovy in Minutes](https://learnxinyminutes.com/docs/groovy/)
 - [Getting familiar with Groovy](http://groovy-lang.org/groovy-dev-kit.html)
+- [About Incremental Build](https://blog.gradle.org/introducing-incremental-build-support)
