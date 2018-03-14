@@ -9,3 +9,4 @@ Useful links:
 - [Learn Groovy in Minutes](https://learnxinyminutes.com/docs/groovy/)
 - [Getting familiar with Groovy](http://groovy-lang.org/groovy-dev-kit.html)
 - [About Incremental Build](https://blog.gradle.org/introducing-incremental-build-support)
+- [About Build Lifecycle](https://docs.gradle.org/current/userguide/build_lifecycle.html)
