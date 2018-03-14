@@ -1,0 +1,16 @@
+/*
+
+This script demonstrates how to write your own task types
+Further reading: https://docs.gradle.org/current/userguide/custom_tasks.html
+
+*/
+
+// Must inherit from DefaultTask
+class HelloTask extends DefaultTask {
+    @TaskAction
+    def doAction() {
+        println "Hello, user!"
+    }
+}
+
+task someTask(type: HelloTask)
